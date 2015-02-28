@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :posts
+  end
+
+  namespace :admin do
+    resources :categories
+  end
+
+  devise_for :administrators, class_name: "Admin::Administrator"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

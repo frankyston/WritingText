@@ -1,0 +1,33 @@
+<h1>Lista de Posts</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Resumo</th>
+      <th>Mensagem</th>
+      <th>Categoria</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_posts.each do |admin_post| %>
+      <tr>
+        <td><%= admin_post.name %></td>
+        <td><%= admin_post.resume %></td>
+        <td><%= admin_post.message %></td>
+        <td><%= admin_post.admin_category.name %></td>
+        <td>
+          <%= link_to 'Exibir', admin_post, :class=>"btn btn-success" %>
+          <%= link_to 'Editar', edit_admin_post_path(admin_post), :class=>"btn btn-primary" %>
+          <%= link_to 'Excluir', admin_post, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo Post', new_admin_post_path, :class=>"btn btn-primary" %>

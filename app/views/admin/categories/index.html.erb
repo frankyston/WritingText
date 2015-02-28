@@ -1,0 +1,29 @@
+<h1>Lista de Categorias</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_categories.each do |admin_category| %>
+      <tr>
+        <td><%= admin_category.name %></td>
+        <td><%= admin_category.description %></td>
+        <td>
+          <%= link_to 'Exibir', admin_category, :class=>"btn btn-success" %>
+          <%= link_to 'Editar', edit_admin_category_path(admin_category), :class=>"btn btn-primary" %>
+          <%= link_to 'Excluir', admin_category, method: :delete, data: { confirm: 'Deseja realmente Excluir?' }, :class=>"btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Categoria', new_admin_category_path, :class => "btn btn-primary" %>

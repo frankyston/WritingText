@@ -24,6 +24,7 @@ gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'devise'
 gem 'sendgrid-ruby'
+gem 'rails_admin'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -47,6 +48,13 @@ group :development, :test do
 	gem 'database_cleaner'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'hirb'
+	gem 'rails-erd'
+	gem 'meta_request'
+	gem 'pry'
+	gem 'awesome_print'
+	gem 'better_errors'
+  gem 'binding_of_caller'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

@@ -1,0 +1,22 @@
+<p>
+  <strong>Nome:</strong>
+  <%= @admin_post.name %>
+</p>
+
+<p>
+  <strong>Resumo:</strong>
+  <%= @admin_post.resume %>
+</p>
+
+<p>
+  <strong>Mensagem:</strong>
+  <%= @admin_post.message %>
+</p>
+
+<p>
+  <strong>Categoria:</strong>
+  <%= @admin_post.admin_category.name %>
+</p>
+
+<%= link_to 'Editar', edit_admin_post_path(@admin_post), :class => "btn btn-primary" %>
+<%= link_to 'Voltar', admin_posts_path, :class => "btn btn-primary" %>

@@ -14,25 +14,9 @@
 
     <%= stylesheet_link_tag "application", :media => "all" %>
 
-    <!-- For third-generation iPad with high-resolution Retina display: -->
-    <!-- Size should be 144 x 144 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
-
-    <!-- For iPhone with high-resolution Retina display: -->
-    <!-- Size should be 114 x 114 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
-
-    <!-- For first- and second-generation iPad: -->
-    <!-- Size should be 72 x 72 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
-
-    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-    <!-- Size should be 57 x 57 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
-
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+    <%# favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
   </head>
@@ -48,9 +32,20 @@
         <a class="navbar-brand" href="#">WritingText</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
+            <li><%= link_to "Categorias", admin_categories_path  %></li>
             <li><%= link_to "Link2", "/path2"  %></li>
             <li><%= link_to "Link3", "/path3"  %></li>
+          </ul>
+
+          <!-- Right Button -->
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_administrator.email %> <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li class="divider"></li>
+                <li><%= link_to('Sair', destroy_administrator_session_path, :method => :delete) %>  </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -59,7 +54,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
-          <%= bootstrap_flash %>
+          <%= render 'admin/shared/messages' %>
           <%= yield %>
         </div>
         <div class="col-lg-3">

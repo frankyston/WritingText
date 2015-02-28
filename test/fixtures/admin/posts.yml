@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  resume: MyText
+  message: MyText
+  admin_category_id: 
+
+two:
+  name: MyString
+  resume: MyText
+  message: MyText
+  admin_category_id: 
