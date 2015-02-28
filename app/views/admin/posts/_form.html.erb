@@ -4,7 +4,8 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :resume %>
-    <%= f.input :message %>
+    <%# text_area_tag :message, "", :class => "redactor", :rows => 40, :cols => 120 %>
+    <%= f.input :message, :input_html => { :class => "redactor" } %>
     <%= f.association :admin_category %>
   </div>
 

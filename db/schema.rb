@@ -52,5 +52,21 @@ ActiveRecord::Schema.define(version: 20150228204505) do
 
   add_index "admin_posts", ["admin_category_id"], name: "index_admin_posts_on_admin_category_id", using: :btree
 
+  create_table "redactor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
+  add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
+
   add_foreign_key "admin_posts", "admin_categories"
 end

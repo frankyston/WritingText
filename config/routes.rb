@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RedactorRails::Engine => '/redactor_rails'
   namespace :admin do
     resources :posts
   end
