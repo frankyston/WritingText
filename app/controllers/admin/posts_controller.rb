@@ -44,6 +44,7 @@ class Admin::PostsController < ApplicationController
   def update
     respond_to do |format|
       if @admin_post.update(admin_post_params)
+        create_or_update_tags(@admin_post, admin_post_params[:tag])
         format.html { redirect_to @admin_post, notice: 'Post atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @admin_post }
       else
@@ -64,8 +65,6 @@ class Admin::PostsController < ApplicationController
   end
 
   def create_or_update_tags(post, tags) 
-    logger.info "AQUI ESTA O OBJETO POST =======>>>>> #{post}"
-    logger.info "AQUI ESTA AS TAGAS POST =======>>>>> #{tags}"
     tags = tags.split(",").map{|tag| tag.lstrip.rstrip}
     tags.each do |tag|
       new_tag = Admin::Tag.new
