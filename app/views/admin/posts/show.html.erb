@@ -18,5 +18,26 @@
   <%= @admin_post.admin_category.name %>
 </p>
 
+<div class="gallery_photos">
+	<h3>
+		Fotos (<%= @admin_post.photos.count.to_s%>)
+		<%=link_to "+", new_admin_post_photo_path(:post_id => @admin_post.id), :title=> "Adicionar Foto", :class => "btn btn-warning"%>
+		
+	</h3>
+	
+	<div style="float: left; width: 100%;">
+		<%@admin_post.photos.each do |post_photo|%>
+			<div style="float:left; text-align:center; margin: 5px; display:block; ">
+			  <%=image_tag post_photo.photo.url(:thumb), :style => "margin-bottom: 5px; height: 70px;border:1px solid #333; border-radius: 4px;"%><br/>
+
+			  <%= link_to raw("Excluir"), post_photo, method: :delete, data: { confirm: 'Deseja Realmente Excluir?' }, :class=> "btn btn-danger btn-xs", :title=> "Excluir Foto" %>
+
+			</div>
+		<% end %>
+	</div>
+
+</div>
+<br>
+
 <%= link_to 'Editar', edit_admin_post_path(@admin_post), :class => "btn btn-primary" %>
 <%= link_to 'Voltar', admin_posts_path, :class => "btn btn-primary" %>

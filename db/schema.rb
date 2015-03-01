@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301140242) do
+ActiveRecord::Schema.define(version: 20150301191958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,19 @@ ActiveRecord::Schema.define(version: 20150301140242) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "admin_post_photos", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "admin_post_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "admin_post_photos", ["admin_post_id"], name: "index_admin_post_photos_on_admin_post_id", using: :btree
 
   create_table "admin_post_tags", force: :cascade do |t|
     t.integer  "admin_post_id"
@@ -85,6 +98,7 @@ ActiveRecord::Schema.define(version: 20150301140242) do
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
 
+  add_foreign_key "admin_post_photos", "admin_posts"
   add_foreign_key "admin_post_tags", "admin_posts"
   add_foreign_key "admin_post_tags", "admin_tags"
   add_foreign_key "admin_posts", "admin_categories"

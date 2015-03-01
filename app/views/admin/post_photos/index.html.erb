@@ -1,0 +1,27 @@
+<h1>Galeria de Fotos dos Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_post_photos.each do |admin_post_photo| %>
+      <tr>
+        <td><%= admin_post_photo.title %></td>
+        <td>
+          <%= link_to 'Exibir', admin_post_photo, :class => "btn btn-success" %>
+          <%= link_to 'Editar', edit_admin_post_photo_path(admin_post_photo), :class => "btn btn-primary" %>
+          <%= link_to 'Excluir', admin_post_photo, method: :delete, data: { confirm: 'Deseja realmente excliur?' }, :class => "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%# link_to 'New Post photo', new_admin_post_photo_path %>

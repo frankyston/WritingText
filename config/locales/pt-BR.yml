@@ -221,6 +221,7 @@ pt-BR:
     models:
       admin/category: "Categoria"
       admin/post: "Post"
+      admin/post_photo: "Foto"
     attributes:
       admin/category:
         name: "Nome da Categoria"
@@ -230,3 +231,6 @@ pt-BR:
         resume: Resumo
         message: Mensagem
         admin_category: Categoria
+      admin/post_photo:
+        title: Titulo
+        photo: Foto
