@@ -20,6 +20,7 @@ class Admin::PostsController < ApplicationController
 
   # GET /admin/posts/1/edit
   def edit
+    @admin_post.tag = @admin_post.tags.map{|tag| tag.name }.join(", ")
   end
 
   # POST /admin/posts
@@ -73,7 +74,9 @@ class Admin::PostsController < ApplicationController
         save_post_tag(post, new_tag)
       else
         new_tag = Admin::Tag.find_by_name(tag)
-        save_post_tag(post, new_tag)
+        unless new_tag
+          save_post_tag(post, new_tag)
+        end
       end
     end
   end
