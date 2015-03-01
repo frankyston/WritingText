@@ -7,6 +7,7 @@
     <%# text_area_tag :message, "", :class => "redactor", :rows => 40, :cols => 120 %>
     <%= f.input :message, :input_html => { :class => "redactor" } %>
     <%= f.association :admin_category %>
+    <%= f.input :tag, as: :string, :label => "Tags: Separe cada tag com virgula." %>
   </div>
 
   <div class="form-actions">

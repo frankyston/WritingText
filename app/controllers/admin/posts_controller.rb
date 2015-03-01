@@ -29,6 +29,7 @@ class Admin::PostsController < ApplicationController
 
     respond_to do |format|
       if @admin_post.save
+        create_or_update_tags(@admin_post, admin_post_params[:tag])
         format.html { redirect_to @admin_post, notice: 'Post criado com sucesso.' }
         format.json { render :show, status: :created, location: @admin_post }
       else
@@ -62,6 +63,29 @@ class Admin::PostsController < ApplicationController
     end
   end
 
+  def create_or_update_tags(post, tags) 
+    logger.info "AQUI ESTA O OBJETO POST =======>>>>> #{post}"
+    logger.info "AQUI ESTA AS TAGAS POST =======>>>>> #{tags}"
+    tags = tags.split(",").map{|tag| tag.lstrip.rstrip}
+    tags.each do |tag|
+      new_tag = Admin::Tag.new
+      new_tag.name = tag
+      if new_tag.save
+        save_post_tag(post, new_tag)
+      else
+        new_tag = Admin::Tag.find_by_name(tag)
+        save_post_tag(post, new_tag)
+      end
+    end
+  end
+
+  def save_post_tag(post, tag)
+    post_tag = Admin::PostTag.new
+    post_tag.admin_post_id = post.id
+    post_tag.admin_tag_id = tag.id
+    post_tag.save
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_post
@@ -70,6 +94,6 @@ class Admin::PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_post_params
-      params.require(:admin_post).permit(:name, :resume, :message, :admin_category_id)
+      params.require(:admin_post).permit(:name, :resume, :message, :tag, :admin_category_id)
     end
 end
